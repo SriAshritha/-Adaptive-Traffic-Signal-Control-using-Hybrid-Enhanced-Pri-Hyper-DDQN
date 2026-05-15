@@ -1,0 +1,3 @@
+benchmark,eval_reward_mean,eval_reward_std,eval_avg_queue_length,eval_avg_waiting_time,eval_total_throughput,eval_total_delay,eval_phase_changes
+single_2action,-58.325108257855604,2.302932395546006,0.45,3.9238513977765277,5767.0,0.0,1797.6666666666667
+fourway_4action,-19.585601797572064,0.6158228935602621,0.9725,21.29439983054444,1717.0333333333333,28008.0,244.0

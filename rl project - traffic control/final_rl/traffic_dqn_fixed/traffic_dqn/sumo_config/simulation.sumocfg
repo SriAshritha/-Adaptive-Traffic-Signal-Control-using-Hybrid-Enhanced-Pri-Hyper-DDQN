@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file    value="intersection.net.xml"/>
+        <route-files value="routes.rou.xml"/>
+    </input>
+
+    <time>
+        <begin       value="0"/>
+        <end         value="3600"/>
+        <step-length value="1.0"/>
+    </time>
+
+    <processing>
+        <time-to-teleport    value="-1"/>
+        <collision.action    value="remove"/>
+        <waiting-time-memory value="300"/>
+        <max-depart-delay    value="10"/>
+    </processing>
+
+    <random_number>
+        <seed value="42"/>
+    </random_number>
+
+    <report>
+        <no-warnings             value="true"/>
+        <no-step-log             value="true"/>
+        <duration-log.statistics value="true"/>
+    </report>
+
+</configuration>

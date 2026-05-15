@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/nodes_file.xsd">
+
+    <!-- Central intersection: traffic-light controlled -->
+    <node id="intersection" x="0.0" y="0.0" type="traffic_light"/>
+
+    <!-- Approach road endpoints 200m from centre -->
+    <node id="north_end"  x="0.0"    y="200.0"  type="priority"/>
+    <node id="south_end"  x="0.0"    y="-200.0" type="priority"/>
+    <node id="east_end"   x="200.0"  y="0.0"    type="priority"/>
+    <node id="west_end"   x="-200.0" y="0.0"    type="priority"/>
+
+</nodes>

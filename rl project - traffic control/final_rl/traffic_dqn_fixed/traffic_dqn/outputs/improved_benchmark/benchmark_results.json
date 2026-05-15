@@ -1,0 +1,857 @@
+{
+  "results": {
+    "Improved TD(0)": {
+      "summary": {
+        "eval_reward_mean": -58.706349561576076,
+        "eval_reward_std": 2.444523055017353,
+        "eval_avg_queue_length": 0.4666666666666667,
+        "eval_avg_waiting_time": 3.9048150539398194,
+        "eval_total_throughput": 5766.933333333333,
+        "eval_phase_changes": 1869.1666666666667
+      },
+      "rows": [
+        {
+          "seed": 142,
+          "reward": -60.19517257939403,
+          "avg_queue_length": 1.25,
+          "avg_waiting_time": 4.022256851196289,
+          "total_throughput": 5855,
+          "phase_changes": 1908
+        },
+        {
+          "seed": 143,
+          "reward": -55.17327596250189,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 3.6538455486297607,
+          "total_throughput": 5671,
+          "phase_changes": 1860
+        },
+        {
+          "seed": 144,
+          "reward": -62.78137214264138,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 4.188452243804932,
+          "total_throughput": 5861,
+          "phase_changes": 1842
+        },
+        {
+          "seed": 145,
+          "reward": -62.720087200028395,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.1915283203125,
+          "total_throughput": 5956,
+          "phase_changes": 1912
+        },
+        {
+          "seed": 146,
+          "reward": -55.86153906065094,
+          "avg_queue_length": 1.25,
+          "avg_waiting_time": 3.7521021366119385,
+          "total_throughput": 5737,
+          "phase_changes": 1877
+        },
+        {
+          "seed": 147,
+          "reward": -62.085102680385155,
+          "avg_queue_length": 1.0,
+          "avg_waiting_time": 4.092952251434326,
+          "total_throughput": 5792,
+          "phase_changes": 1881
+        },
+        {
+          "seed": 148,
+          "reward": -56.42863370979662,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 3.7422804832458496,
+          "total_throughput": 5706,
+          "phase_changes": 1862
+        },
+        {
+          "seed": 149,
+          "reward": -59.59654580533758,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.9929940700531006,
+          "total_throughput": 5781,
+          "phase_changes": 1880
+        },
+        {
+          "seed": 150,
+          "reward": -56.98042325796508,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.8195767402648926,
+          "total_throughput": 5765,
+          "phase_changes": 1901
+        },
+        {
+          "seed": 151,
+          "reward": -58.47455736229682,
+          "avg_queue_length": 1.0,
+          "avg_waiting_time": 3.869072914123535,
+          "total_throughput": 5838,
+          "phase_changes": 1858
+        },
+        {
+          "seed": 152,
+          "reward": -57.92964178495786,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.8438727855682373,
+          "total_throughput": 5803,
+          "phase_changes": 1888
+        },
+        {
+          "seed": 153,
+          "reward": -56.48382676184177,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.7354342937469482,
+          "total_throughput": 5745,
+          "phase_changes": 1881
+        },
+        {
+          "seed": 154,
+          "reward": -61.5837439545901,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 4.134565353393555,
+          "total_throughput": 5758,
+          "phase_changes": 1897
+        },
+        {
+          "seed": 155,
+          "reward": -62.17327308910325,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 4.143792629241943,
+          "total_throughput": 5824,
+          "phase_changes": 1862
+        },
+        {
+          "seed": 156,
+          "reward": -58.177662604052585,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.8328521251678467,
+          "total_throughput": 5669,
+          "phase_changes": 1848
+        },
+        {
+          "seed": 157,
+          "reward": -59.75089079342872,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 3.9726972579956055,
+          "total_throughput": 5743,
+          "phase_changes": 1870
+        },
+        {
+          "seed": 158,
+          "reward": -58.44971111500686,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.864649534225464,
+          "total_throughput": 5786,
+          "phase_changes": 1853
+        },
+        {
+          "seed": 159,
+          "reward": -61.65352806035729,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.1307573318481445,
+          "total_throughput": 5788,
+          "phase_changes": 1880
+        },
+        {
+          "seed": 160,
+          "reward": -57.9599869064034,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.805683135986328,
+          "total_throughput": 5730,
+          "phase_changes": 1864
+        },
+        {
+          "seed": 161,
+          "reward": -59.6923092455891,
+          "avg_queue_length": 1.25,
+          "avg_waiting_time": 3.9650676250457764,
+          "total_throughput": 5807,
+          "phase_changes": 1860
+        },
+        {
+          "seed": 162,
+          "reward": -55.67350433928356,
+          "avg_queue_length": 2.25,
+          "avg_waiting_time": 3.6921491622924805,
+          "total_throughput": 5685,
+          "phase_changes": 1867
+        },
+        {
+          "seed": 163,
+          "reward": -57.73621629412699,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.8450498580932617,
+          "total_throughput": 5734,
+          "phase_changes": 1865
+        },
+        {
+          "seed": 164,
+          "reward": -58.414831908534225,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.9111545085906982,
+          "total_throughput": 5807,
+          "phase_changes": 1841
+        },
+        {
+          "seed": 165,
+          "reward": -54.804430859217014,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.6411519050598145,
+          "total_throughput": 5643,
+          "phase_changes": 1858
+        },
+        {
+          "seed": 166,
+          "reward": -54.56054473959027,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.627659559249878,
+          "total_throughput": 5661,
+          "phase_changes": 1847
+        },
+        {
+          "seed": 167,
+          "reward": -55.366916091608985,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.660823106765747,
+          "total_throughput": 5672,
+          "phase_changes": 1848
+        },
+        {
+          "seed": 168,
+          "reward": -60.274264248832395,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.028282165527344,
+          "total_throughput": 5820,
+          "phase_changes": 1887
+        },
+        {
+          "seed": 169,
+          "reward": -58.46959321835437,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 3.8880116939544678,
+          "total_throughput": 5754,
+          "phase_changes": 1882
+        },
+        {
+          "seed": 170,
+          "reward": -61.16884107229484,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 4.0865702629089355,
+          "total_throughput": 5791,
+          "phase_changes": 1848
+        },
+        {
+          "seed": 171,
+          "reward": -60.570059999110526,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.0091657638549805,
+          "total_throughput": 5826,
+          "phase_changes": 1848
+        }
+      ],
+      "train_episodes": 40
+    },
+    "Improved SARSA": {
+      "summary": {
+        "eval_reward_mean": -58.57137332869,
+        "eval_reward_std": 2.455487010296739,
+        "eval_avg_queue_length": 0.475,
+        "eval_avg_waiting_time": 3.95123028755188,
+        "eval_total_throughput": 5766.9,
+        "eval_phase_changes": 1807.0666666666666
+      },
+      "rows": [
+        {
+          "seed": 142,
+          "reward": -59.74161066002436,
+          "avg_queue_length": 1.25,
+          "avg_waiting_time": 4.035354137420654,
+          "total_throughput": 5855,
+          "phase_changes": 1846
+        },
+        {
+          "seed": 143,
+          "reward": -55.35577805026125,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 3.7340056896209717,
+          "total_throughput": 5671,
+          "phase_changes": 1820
+        },
+        {
+          "seed": 144,
+          "reward": -62.277795430977825,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 4.203831195831299,
+          "total_throughput": 5861,
+          "phase_changes": 1776
+        },
+        {
+          "seed": 145,
+          "reward": -62.31774998994871,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.229930400848389,
+          "total_throughput": 5956,
+          "phase_changes": 1856
+        },
+        {
+          "seed": 146,
+          "reward": -55.58615189637253,
+          "avg_queue_length": 1.25,
+          "avg_waiting_time": 3.765277147293091,
+          "total_throughput": 5737,
+          "phase_changes": 1815
+        },
+        {
+          "seed": 147,
+          "reward": -61.58936031313296,
+          "avg_queue_length": 0.75,
+          "avg_waiting_time": 4.103358268737793,
+          "total_throughput": 5793,
+          "phase_changes": 1803
+        },
+        {
+          "seed": 148,
+          "reward": -56.14665472895625,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 3.788330078125,
+          "total_throughput": 5706,
+          "phase_changes": 1800
+        },
+        {
+          "seed": 149,
+          "reward": -59.95405989637947,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 4.0582146644592285,
+          "total_throughput": 5781,
+          "phase_changes": 1826
+        },
+        {
+          "seed": 150,
+          "reward": -56.49426932317679,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.8098881244659424,
+          "total_throughput": 5765,
+          "phase_changes": 1839
+        },
+        {
+          "seed": 151,
+          "reward": -58.04492391347268,
+          "avg_queue_length": 1.0,
+          "avg_waiting_time": 3.887329339981079,
+          "total_throughput": 5838,
+          "phase_changes": 1794
+        },
+        {
+          "seed": 152,
+          "reward": -57.51713004815379,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.8648505210876465,
+          "total_throughput": 5803,
+          "phase_changes": 1822
+        },
+        {
+          "seed": 153,
+          "reward": -56.19716692124307,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.780989646911621,
+          "total_throughput": 5745,
+          "phase_changes": 1807
+        },
+        {
+          "seed": 154,
+          "reward": -61.50495592639042,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 4.196713924407959,
+          "total_throughput": 5758,
+          "phase_changes": 1829
+        },
+        {
+          "seed": 155,
+          "reward": -62.16693217626795,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 4.21345329284668,
+          "total_throughput": 5824,
+          "phase_changes": 1790
+        },
+        {
+          "seed": 156,
+          "reward": -58.13943426594263,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.8932342529296875,
+          "total_throughput": 5667,
+          "phase_changes": 1787
+        },
+        {
+          "seed": 157,
+          "reward": -59.604697168038086,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.0034379959106445,
+          "total_throughput": 5743,
+          "phase_changes": 1816
+        },
+        {
+          "seed": 158,
+          "reward": -58.486197600088175,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.9406232833862305,
+          "total_throughput": 5786,
+          "phase_changes": 1797
+        },
+        {
+          "seed": 159,
+          "reward": -61.385284679056376,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.2008209228515625,
+          "total_throughput": 5788,
+          "phase_changes": 1814
+        },
+        {
+          "seed": 160,
+          "reward": -58.3823744266296,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.8904225826263428,
+          "total_throughput": 5730,
+          "phase_changes": 1810
+        },
+        {
+          "seed": 161,
+          "reward": -60.04490886069406,
+          "avg_queue_length": 1.25,
+          "avg_waiting_time": 4.0393595695495605,
+          "total_throughput": 5807,
+          "phase_changes": 1806
+        },
+        {
+          "seed": 162,
+          "reward": -55.32532082406188,
+          "avg_queue_length": 2.25,
+          "avg_waiting_time": 3.726807117462158,
+          "total_throughput": 5685,
+          "phase_changes": 1795
+        },
+        {
+          "seed": 163,
+          "reward": -57.13730726391291,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.854126214981079,
+          "total_throughput": 5734,
+          "phase_changes": 1799
+        },
+        {
+          "seed": 164,
+          "reward": -59.42045729590511,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 4.052408695220947,
+          "total_throughput": 5807,
+          "phase_changes": 1789
+        },
+        {
+          "seed": 165,
+          "reward": -54.47980279621362,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.6481239795684814,
+          "total_throughput": 5643,
+          "phase_changes": 1798
+        },
+        {
+          "seed": 166,
+          "reward": -54.177664778241066,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.650418281555176,
+          "total_throughput": 5661,
+          "phase_changes": 1767
+        },
+        {
+          "seed": 167,
+          "reward": -55.66884019476721,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.7413523197174072,
+          "total_throughput": 5672,
+          "phase_changes": 1782
+        },
+        {
+          "seed": 168,
+          "reward": -59.967011203724674,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.053190231323242,
+          "total_throughput": 5820,
+          "phase_changes": 1829
+        },
+        {
+          "seed": 169,
+          "reward": -58.148891489591875,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 3.9269747734069824,
+          "total_throughput": 5754,
+          "phase_changes": 1808
+        },
+        {
+          "seed": 170,
+          "reward": -61.258812814010206,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 4.166256427764893,
+          "total_throughput": 5791,
+          "phase_changes": 1800
+        },
+        {
+          "seed": 171,
+          "reward": -60.61965492506408,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.077825546264648,
+          "total_throughput": 5826,
+          "phase_changes": 1792
+        }
+      ],
+      "train_episodes": 80
+    },
+    "Improved Q-Learning": {
+      "summary": {
+        "eval_reward_mean": -58.42727946522016,
+        "eval_reward_std": 2.4124604684622195,
+        "eval_avg_queue_length": 0.475,
+        "eval_avg_waiting_time": 3.9318346341451007,
+        "eval_total_throughput": 5766.9,
+        "eval_phase_changes": 1810.2666666666667
+      },
+      "rows": [
+        {
+          "seed": 142,
+          "reward": -59.669921303754,
+          "avg_queue_length": 1.25,
+          "avg_waiting_time": 4.026309967041016,
+          "total_throughput": 5855,
+          "phase_changes": 1846
+        },
+        {
+          "seed": 143,
+          "reward": -55.3126032468494,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 3.7251927852630615,
+          "total_throughput": 5671,
+          "phase_changes": 1822
+        },
+        {
+          "seed": 144,
+          "reward": -62.309385019905825,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 4.201013565063477,
+          "total_throughput": 5861,
+          "phase_changes": 1780
+        },
+        {
+          "seed": 145,
+          "reward": -62.19492565630866,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.2138543128967285,
+          "total_throughput": 5956,
+          "phase_changes": 1860
+        },
+        {
+          "seed": 146,
+          "reward": -55.531919522222196,
+          "avg_queue_length": 1.25,
+          "avg_waiting_time": 3.761383295059204,
+          "total_throughput": 5737,
+          "phase_changes": 1815
+        },
+        {
+          "seed": 147,
+          "reward": -61.39975358885883,
+          "avg_queue_length": 0.75,
+          "avg_waiting_time": 4.074601650238037,
+          "total_throughput": 5793,
+          "phase_changes": 1807
+        },
+        {
+          "seed": 148,
+          "reward": -56.21439952701196,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 3.7786834239959717,
+          "total_throughput": 5706,
+          "phase_changes": 1810
+        },
+        {
+          "seed": 149,
+          "reward": -59.60164448457753,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 4.027893543243408,
+          "total_throughput": 5781,
+          "phase_changes": 1826
+        },
+        {
+          "seed": 150,
+          "reward": -56.514369272515694,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.810932159423828,
+          "total_throughput": 5765,
+          "phase_changes": 1841
+        },
+        {
+          "seed": 151,
+          "reward": -58.00479011683569,
+          "avg_queue_length": 1.0,
+          "avg_waiting_time": 3.8896806240081787,
+          "total_throughput": 5838,
+          "phase_changes": 1796
+        },
+        {
+          "seed": 152,
+          "reward": -57.32549128280554,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.8374202251434326,
+          "total_throughput": 5803,
+          "phase_changes": 1828
+        },
+        {
+          "seed": 153,
+          "reward": -56.12040313957169,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.7585699558258057,
+          "total_throughput": 5745,
+          "phase_changes": 1811
+        },
+        {
+          "seed": 154,
+          "reward": -61.06383646364016,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 4.152767658233643,
+          "total_throughput": 5758,
+          "phase_changes": 1833
+        },
+        {
+          "seed": 155,
+          "reward": -62.11305986626676,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 4.20728874206543,
+          "total_throughput": 5824,
+          "phase_changes": 1792
+        },
+        {
+          "seed": 156,
+          "reward": -57.988564519199386,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.8716213703155518,
+          "total_throughput": 5667,
+          "phase_changes": 1789
+        },
+        {
+          "seed": 157,
+          "reward": -59.48211251942398,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 3.9825949668884277,
+          "total_throughput": 5743,
+          "phase_changes": 1816
+        },
+        {
+          "seed": 158,
+          "reward": -58.30605695307289,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.911985158920288,
+          "total_throughput": 5786,
+          "phase_changes": 1801
+        },
+        {
+          "seed": 159,
+          "reward": -61.02046694730603,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.142543792724609,
+          "total_throughput": 5788,
+          "phase_changes": 1822
+        },
+        {
+          "seed": 160,
+          "reward": -58.25082400039771,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.872177839279175,
+          "total_throughput": 5730,
+          "phase_changes": 1810
+        },
+        {
+          "seed": 161,
+          "reward": -59.97504544581798,
+          "avg_queue_length": 1.25,
+          "avg_waiting_time": 4.026106834411621,
+          "total_throughput": 5807,
+          "phase_changes": 1814
+        },
+        {
+          "seed": 162,
+          "reward": -55.3040284760548,
+          "avg_queue_length": 2.25,
+          "avg_waiting_time": 3.721102476119995,
+          "total_throughput": 5685,
+          "phase_changes": 1795
+        },
+        {
+          "seed": 163,
+          "reward": -57.07925505530804,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.847219467163086,
+          "total_throughput": 5734,
+          "phase_changes": 1799
+        },
+        {
+          "seed": 164,
+          "reward": -58.81525450394473,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.9846858978271484,
+          "total_throughput": 5807,
+          "phase_changes": 1797
+        },
+        {
+          "seed": 165,
+          "reward": -54.30793972038472,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.6267035007476807,
+          "total_throughput": 5643,
+          "phase_changes": 1800
+        },
+        {
+          "seed": 166,
+          "reward": -54.12956238126366,
+          "avg_queue_length": 0.0,
+          "avg_waiting_time": 3.6461122035980225,
+          "total_throughput": 5661,
+          "phase_changes": 1773
+        },
+        {
+          "seed": 167,
+          "reward": -55.470470214441804,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 3.724262237548828,
+          "total_throughput": 5672,
+          "phase_changes": 1784
+        },
+        {
+          "seed": 168,
+          "reward": -59.826094822915074,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.037786960601807,
+          "total_throughput": 5820,
+          "phase_changes": 1831
+        },
+        {
+          "seed": 169,
+          "reward": -57.94469997057739,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 3.893894672393799,
+          "total_throughput": 5754,
+          "phase_changes": 1812
+        },
+        {
+          "seed": 170,
+          "reward": -61.02992775294217,
+          "avg_queue_length": 0.5,
+          "avg_waiting_time": 4.1382551193237305,
+          "total_throughput": 5791,
+          "phase_changes": 1802
+        },
+        {
+          "seed": 171,
+          "reward": -60.51157818243038,
+          "avg_queue_length": 0.25,
+          "avg_waiting_time": 4.062394618988037,
+          "total_throughput": 5826,
+          "phase_changes": 1796
+        }
+      ],
+      "train_episodes": 0
+    }
+  },
+  "references": {
+    "Pri-DDQN": {
+      "eval_reward_mean": -58.325108257855604,
+      "eval_reward_std": 2.302932395546006,
+      "eval_avg_queue_length": 0.45,
+      "eval_avg_waiting_time": 3.9238513977765277,
+      "eval_total_throughput": 5767.0,
+      "eval_total_delay": 0.0,
+      "eval_phase_changes": 1797.6666666666667
+    },
+    "MA-SAC": {
+      "eval_reward_mean": -65.51149898050603,
+      "eval_reward_std": 2.5266059177447886,
+      "eval_avg_queue_length": 1.0,
+      "eval_avg_waiting_time": 4.746434866036806,
+      "eval_total_throughput": 5762.0,
+      "eval_total_delay": null,
+      "eval_phase_changes": 2103.0
+    }
+  },
+  "comparisons": {
+    "Improved TD(0)": {
+      "Pri-DDQN": {
+        "better_reward": false,
+        "better_queue": false,
+        "better_wait": true,
+        "better_throughput": false
+      },
+      "MA-SAC": {
+        "better_reward": true,
+        "better_queue": true,
+        "better_wait": true,
+        "better_throughput": true
+      }
+    },
+    "Improved SARSA": {
+      "Pri-DDQN": {
+        "better_reward": false,
+        "better_queue": false,
+        "better_wait": false,
+        "better_throughput": false
+      },
+      "MA-SAC": {
+        "better_reward": true,
+        "better_queue": true,
+        "better_wait": true,
+        "better_throughput": true
+      }
+    },
+    "Improved Q-Learning": {
+      "Pri-DDQN": {
+        "better_reward": false,
+        "better_queue": false,
+        "better_wait": false,
+        "better_throughput": false
+      },
+      "MA-SAC": {
+        "better_reward": true,
+        "better_queue": true,
+        "better_wait": true,
+        "better_throughput": true
+      }
+    }
+  },
+  "ranking": {
+    "reward": [
+      "Pri-DDQN",
+      "Improved Q-Learning",
+      "Improved SARSA",
+      "Improved TD(0)",
+      "MA-SAC"
+    ],
+    "avg_queue_length": [
+      "Pri-DDQN",
+      "Improved TD(0)",
+      "Improved SARSA",
+      "Improved Q-Learning",
+      "MA-SAC"
+    ],
+    "avg_waiting_time": [
+      "Improved TD(0)",
+      "Pri-DDQN",
+      "Improved Q-Learning",
+      "Improved SARSA",
+      "MA-SAC"
+    ],
+    "total_throughput": [
+      "Pri-DDQN",
+      "Improved TD(0)",
+      "Improved SARSA",
+      "Improved Q-Learning",
+      "MA-SAC"
+    ]
+  }
+}

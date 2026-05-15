@@ -1,0 +1,68 @@
+{
+  "TD(0)": {
+    "train_reward_last50": -344.16086006188374,
+    "train_avg_queue_last50": 16.059722222222224,
+    "train_avg_wait_last50": 807.667340677897,
+    "train_throughput_last50": 945.42,
+    "eval_reward_mean": -346.24522778668853,
+    "eval_reward_std": 1.3130894845034644,
+    "eval_avg_queue_length": 19.00105324074074,
+    "eval_avg_waiting_time": 1359.5147513531313,
+    "eval_total_throughput": 717.9,
+    "eval_total_delay": 547230.3333333334,
+    "eval_phase_changes": 0.0
+  },
+  "SARSA": {
+    "train_reward_last50": -98.74945072329989,
+    "train_avg_queue_last50": 2.837513888888889,
+    "train_avg_wait_last50": 50.8569543150531,
+    "train_throughput_last50": 1704.42,
+    "eval_reward_mean": -87.24012817631457,
+    "eval_reward_std": 71.91191974699417,
+    "eval_avg_queue_length": 3.30125,
+    "eval_avg_waiting_time": 103.92233104198068,
+    "eval_total_throughput": 1633.6,
+    "eval_total_delay": 95076.0,
+    "eval_phase_changes": 217.83333333333334
+  },
+  "Q-Learning": {
+    "train_reward_last50": -99.03146048241108,
+    "train_avg_queue_last50": 2.9210000000000007,
+    "train_avg_wait_last50": 51.49583990441428,
+    "train_throughput_last50": 1704.5,
+    "eval_reward_mean": -216.20684997917456,
+    "eval_reward_std": 73.82897316575799,
+    "eval_avg_queue_length": 8.223182870370369,
+    "eval_avg_waiting_time": 358.2776282177148,
+    "eval_total_throughput": 1385.7333333333333,
+    "eval_total_delay": 236827.66666666666,
+    "eval_phase_changes": 135.86666666666667
+  },
+  "Pri-DDQN": {
+    "eval_reward_mean": -19.585601797572064,
+    "eval_reward_std": 0.6158228935602621,
+    "eval_avg_queue_length": 0.9725,
+    "eval_avg_waiting_time": 21.29439983054444,
+    "eval_total_throughput": 1717.0333333333333,
+    "eval_total_delay": 28008.0,
+    "eval_phase_changes": 244.0
+  },
+  "MA-SAC": {
+    "eval_reward_mean": -25.892594554419237,
+    "eval_reward_std": 1.2517570678493486,
+    "eval_avg_queue_length": 1.079074074074074,
+    "eval_avg_waiting_time": 21.60156949007953,
+    "eval_total_throughput": 1722.3333333333333,
+    "eval_total_delay": 31077.333333333332,
+    "eval_phase_changes": 330.06666666666666
+  },
+  "Hybrid-Enhanced": {
+    "eval_reward_mean": -20.761181055552637,
+    "eval_reward_std": 0.4460745040911531,
+    "eval_avg_queue_length": 0.8633449074074073,
+    "eval_avg_waiting_time": 19.146157985175098,
+    "eval_total_throughput": 1714.0666666666666,
+    "eval_total_delay": 24864.333333333332,
+    "eval_phase_changes": 306.8333333333333
+  }
+}

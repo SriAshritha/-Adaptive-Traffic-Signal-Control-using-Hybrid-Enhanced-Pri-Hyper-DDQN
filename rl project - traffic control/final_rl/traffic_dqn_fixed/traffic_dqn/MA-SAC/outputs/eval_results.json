@@ -1,0 +1,670 @@
+{
+  "paper": {
+    "title": "Towards Multi-agent Reinforcement Learning based Traffic Signal Control through Spatio-temporal Hypergraphs",
+    "method": "Benchmark-fair single-intersection MA-SAC adaptation"
+  },
+  "setup": {
+    "mode": "normal",
+    "episodes": 500,
+    "eval_episodes": 30,
+    "actions": {
+      "0": {
+        "name": "NS Straight",
+        "sumo_phase_index": 0
+      },
+      "1": {
+        "name": "NS Left / U-turn",
+        "sumo_phase_index": 2
+      },
+      "2": {
+        "name": "EW Straight",
+        "sumo_phase_index": 4
+      },
+      "3": {
+        "name": "EW Left / U-turn",
+        "sumo_phase_index": 6
+      }
+    }
+  },
+  "summary": {
+    "eval_reward_mean": -25.892594554419237,
+    "eval_reward_std": 1.2517570678493486,
+    "eval_avg_queue_length": 1.079074074074074,
+    "eval_avg_waiting_time": 21.60156949007953,
+    "eval_total_throughput": 1722.3333333333333,
+    "eval_total_delay": 31077.333333333332,
+    "eval_phase_changes": 330.06666666666666
+  },
+  "eval_rows": [
+    {
+      "seed": 142,
+      "reward": -25.516742728240974,
+      "avg_queue_length": 1.070486111111111,
+      "avg_waiting_time": 20.8888811800215,
+      "total_throughput": 1741.0,
+      "total_delay": 30830.0,
+      "phase_changes": 333.0,
+      "action_histogram": {
+        "0": 123,
+        "1": 50,
+        "2": 122,
+        "3": 65
+      },
+      "mean_action_probabilities": [
+        0.3028973969776934,
+        0.17822162170887448,
+        0.37665173190034695,
+        0.14222924933060335
+      ]
+    },
+    {
+      "seed": 143,
+      "reward": -25.826325548655454,
+      "avg_queue_length": 1.0767361111111111,
+      "avg_waiting_time": 21.596849375300938,
+      "total_throughput": 1747.0,
+      "total_delay": 31010.0,
+      "phase_changes": 333.0,
+      "action_histogram": {
+        "0": 121,
+        "1": 42,
+        "2": 131,
+        "3": 66
+      },
+      "mean_action_probabilities": [
+        0.31427858819273397,
+        0.1601286960301338,
+        0.38238137309716774,
+        0.14321134418132922
+      ]
+    },
+    {
+      "seed": 144,
+      "reward": -25.184028183226925,
+      "avg_queue_length": 1.0774305555555554,
+      "avg_waiting_time": 21.362216896480984,
+      "total_throughput": 1803.0,
+      "total_delay": 31030.0,
+      "phase_changes": 330.0,
+      "action_histogram": {
+        "0": 120,
+        "1": 48,
+        "2": 129,
+        "3": 63
+      },
+      "mean_action_probabilities": [
+        0.30209845222849857,
+        0.17041757315260622,
+        0.38641285025974464,
+        0.14107112140443434
+      ]
+    },
+    {
+      "seed": 145,
+      "reward": -26.809856797807093,
+      "avg_queue_length": 1.1229166666666666,
+      "avg_waiting_time": 22.395625450876025,
+      "total_throughput": 1753.0,
+      "total_delay": 32340.0,
+      "phase_changes": 336.0,
+      "action_histogram": {
+        "0": 125,
+        "1": 46,
+        "2": 126,
+        "3": 63
+      },
+      "mean_action_probabilities": [
+        0.3213934458143563,
+        0.16276561565281464,
+        0.36607890184960623,
+        0.14976203685407571
+      ]
+    },
+    {
+      "seed": 146,
+      "reward": -26.256099642382214,
+      "avg_queue_length": 1.0944444444444446,
+      "avg_waiting_time": 21.343838087717693,
+      "total_throughput": 1706.0,
+      "total_delay": 31520.0,
+      "phase_changes": 337.0,
+      "action_histogram": {
+        "0": 119,
+        "1": 54,
+        "2": 117,
+        "3": 70
+      },
+      "mean_action_probabilities": [
+        0.27971275582413,
+        0.1908798195140232,
+        0.3784337149542302,
+        0.1509737097805118
+      ]
+    },
+    {
+      "seed": 147,
+      "reward": -26.26518693518497,
+      "avg_queue_length": 1.1135416666666667,
+      "avg_waiting_time": 22.240685239103104,
+      "total_throughput": 1717.0,
+      "total_delay": 32070.0,
+      "phase_changes": 322.0,
+      "action_histogram": {
+        "0": 116,
+        "1": 47,
+        "2": 130,
+        "3": 67
+      },
+      "mean_action_probabilities": [
+        0.3001504170259965,
+        0.17246100475364892,
+        0.3757109060945368,
+        0.15167767209822777
+      ]
+    },
+    {
+      "seed": 148,
+      "reward": -26.745614273040665,
+      "avg_queue_length": 1.1208333333333333,
+      "avg_waiting_time": 21.483651373121475,
+      "total_throughput": 1758.0,
+      "total_delay": 32280.0,
+      "phase_changes": 343.0,
+      "action_histogram": {
+        "0": 121,
+        "1": 54,
+        "2": 115,
+        "3": 70
+      },
+      "mean_action_probabilities": [
+        0.2872452771687592,
+        0.18836400348188206,
+        0.37399457691386084,
+        0.15039614440318208
+      ]
+    },
+    {
+      "seed": 149,
+      "reward": -27.818047519262638,
+      "avg_queue_length": 1.1576388888888889,
+      "avg_waiting_time": 22.15987040731642,
+      "total_throughput": 1738.0,
+      "total_delay": 33340.0,
+      "phase_changes": 329.0,
+      "action_histogram": {
+        "0": 122,
+        "1": 47,
+        "2": 126,
+        "3": 65
+      },
+      "mean_action_probabilities": [
+        0.3193387500324257,
+        0.16238803898829035,
+        0.363458223513064,
+        0.15481498795973375
+      ]
+    },
+    {
+      "seed": 150,
+      "reward": -25.40627875202922,
+      "avg_queue_length": 1.0600694444444445,
+      "avg_waiting_time": 21.519396699799433,
+      "total_throughput": 1714.0,
+      "total_delay": 30530.0,
+      "phase_changes": 326.0,
+      "action_histogram": {
+        "0": 123,
+        "1": 46,
+        "2": 131,
+        "3": 60
+      },
+      "mean_action_probabilities": [
+        0.30890576557062055,
+        0.17131238175768135,
+        0.37683020521839755,
+        0.14295164952090533
+      ]
+    },
+    {
+      "seed": 151,
+      "reward": -26.34012102001339,
+      "avg_queue_length": 1.0986111111111112,
+      "avg_waiting_time": 21.146043038368227,
+      "total_throughput": 1736.0,
+      "total_delay": 31640.0,
+      "phase_changes": 336.0,
+      "action_histogram": {
+        "0": 121,
+        "1": 51,
+        "2": 118,
+        "3": 70
+      },
+      "mean_action_probabilities": [
+        0.302672599644307,
+        0.17678656707549728,
+        0.3636279844241977,
+        0.15691284861488775
+      ]
+    },
+    {
+      "seed": 152,
+      "reward": -25.174758620241857,
+      "avg_queue_length": 1.03125,
+      "avg_waiting_time": 22.030472021632725,
+      "total_throughput": 1669.0,
+      "total_delay": 29700.0,
+      "phase_changes": 324.0,
+      "action_histogram": {
+        "0": 122,
+        "1": 43,
+        "2": 131,
+        "3": 64
+      },
+      "mean_action_probabilities": [
+        0.30299633977950485,
+        0.16344282020085546,
+        0.38272050368007815,
+        0.15084033875581754
+      ]
+    },
+    {
+      "seed": 153,
+      "reward": -26.968051798484733,
+      "avg_queue_length": 1.1347222222222222,
+      "avg_waiting_time": 22.828145241737367,
+      "total_throughput": 1750.0,
+      "total_delay": 32680.0,
+      "phase_changes": 337.0,
+      "action_histogram": {
+        "0": 121,
+        "1": 46,
+        "2": 128,
+        "3": 65
+      },
+      "mean_action_probabilities": [
+        0.3085241725218389,
+        0.16368863081538734,
+        0.3830281038516963,
+        0.1447590919437521
+      ]
+    },
+    {
+      "seed": 154,
+      "reward": -24.842319502474613,
+      "avg_queue_length": 1.0239583333333333,
+      "avg_waiting_time": 21.398922446038988,
+      "total_throughput": 1685.0,
+      "total_delay": 29490.0,
+      "phase_changes": 327.0,
+      "action_histogram": {
+        "0": 120,
+        "1": 47,
+        "2": 127,
+        "3": 66
+      },
+      "mean_action_probabilities": [
+        0.3003230571993135,
+        0.1720751647012473,
+        0.3769558110709719,
+        0.1506459676967657
+      ]
+    },
+    {
+      "seed": 155,
+      "reward": -24.776254654237206,
+      "avg_queue_length": 1.0447916666666666,
+      "avg_waiting_time": 21.02468991809421,
+      "total_throughput": 1699.0,
+      "total_delay": 30090.0,
+      "phase_changes": 324.0,
+      "action_histogram": {
+        "0": 122,
+        "1": 48,
+        "2": 128,
+        "3": 62
+      },
+      "mean_action_probabilities": [
+        0.30846660889468847,
+        0.16519668573206925,
+        0.3798847006117689,
+        0.1464520051680309
+      ]
+    },
+    {
+      "seed": 156,
+      "reward": -25.306257409343583,
+      "avg_queue_length": 1.073611111111111,
+      "avg_waiting_time": 21.425694224569533,
+      "total_throughput": 1753.0,
+      "total_delay": 30920.0,
+      "phase_changes": 322.0,
+      "action_histogram": {
+        "0": 124,
+        "1": 46,
+        "2": 124,
+        "3": 66
+      },
+      "mean_action_probabilities": [
+        0.3173897717202515,
+        0.16305251472398274,
+        0.36657013393430843,
+        0.152987579278085
+      ]
+    },
+    {
+      "seed": 157,
+      "reward": -25.00552321828848,
+      "avg_queue_length": 1.03125,
+      "avg_waiting_time": 20.92853319644928,
+      "total_throughput": 1668.0,
+      "total_delay": 29700.0,
+      "phase_changes": 332.0,
+      "action_histogram": {
+        "0": 119,
+        "1": 51,
+        "2": 123,
+        "3": 67
+      },
+      "mean_action_probabilities": [
+        0.2929060107983168,
+        0.18674477014000795,
+        0.3640754788649853,
+        0.1562737393891147
+      ]
+    },
+    {
+      "seed": 158,
+      "reward": -24.021222729267084,
+      "avg_queue_length": 0.9857638888888889,
+      "avg_waiting_time": 20.88554037147098,
+      "total_throughput": 1644.0,
+      "total_delay": 28390.0,
+      "phase_changes": 321.0,
+      "action_histogram": {
+        "0": 119,
+        "1": 53,
+        "2": 126,
+        "3": 62
+      },
+      "mean_action_probabilities": [
+        0.2998255956780554,
+        0.1764758881743136,
+        0.3813110130764269,
+        0.14238749879240878
+      ]
+    },
+    {
+      "seed": 159,
+      "reward": -24.1933377163911,
+      "avg_queue_length": 0.9902777777777778,
+      "avg_waiting_time": 20.555359461572436,
+      "total_throughput": 1708.0,
+      "total_delay": 28520.0,
+      "phase_changes": 323.0,
+      "action_histogram": {
+        "0": 127,
+        "1": 41,
+        "2": 131,
+        "3": 61
+      },
+      "mean_action_probabilities": [
+        0.3158000080042762,
+        0.16158895127739514,
+        0.39271761670259164,
+        0.12989342603566248
+      ]
+    },
+    {
+      "seed": 160,
+      "reward": -23.89426532980027,
+      "avg_queue_length": 0.9690972222222223,
+      "avg_waiting_time": 20.785058538119,
+      "total_throughput": 1653.0,
+      "total_delay": 27910.0,
+      "phase_changes": 327.0,
+      "action_histogram": {
+        "0": 124,
+        "1": 47,
+        "2": 127,
+        "3": 62
+      },
+      "mean_action_probabilities": [
+        0.3012419209298009,
+        0.16890118511791505,
+        0.38045823855852884,
+        0.14939865904203414
+      ]
+    },
+    {
+      "seed": 161,
+      "reward": -24.81061203019739,
+      "avg_queue_length": 1.0378472222222221,
+      "avg_waiting_time": 21.34346076382531,
+      "total_throughput": 1761.0,
+      "total_delay": 29890.0,
+      "phase_changes": 332.0,
+      "action_histogram": {
+        "0": 121,
+        "1": 48,
+        "2": 126,
+        "3": 65
+      },
+      "mean_action_probabilities": [
+        0.28304110173708574,
+        0.18730561611537447,
+        0.38764957944335443,
+        0.14200370545250085
+      ]
+    },
+    {
+      "seed": 162,
+      "reward": -27.05955531230881,
+      "avg_queue_length": 1.101388888888889,
+      "avg_waiting_time": 22.051425790786745,
+      "total_throughput": 1692.0,
+      "total_delay": 31720.0,
+      "phase_changes": 331.0,
+      "action_histogram": {
+        "0": 118,
+        "1": 49,
+        "2": 125,
+        "3": 68
+      },
+      "mean_action_probabilities": [
+        0.300692858238934,
+        0.17389423986352104,
+        0.3790492837920182,
+        0.14636361778924006
+      ]
+    },
+    {
+      "seed": 163,
+      "reward": -28.779466850340178,
+      "avg_queue_length": 1.175,
+      "avg_waiting_time": 23.30418782234192,
+      "total_throughput": 1736.0,
+      "total_delay": 33840.0,
+      "phase_changes": 341.0,
+      "action_histogram": {
+        "0": 119,
+        "1": 49,
+        "2": 129,
+        "3": 63
+      },
+      "mean_action_probabilities": [
+        0.31759845283750143,
+        0.15612906570658466,
+        0.372996775628821,
+        0.15327570467825502
+      ]
+    },
+    {
+      "seed": 164,
+      "reward": -27.250550533937695,
+      "avg_queue_length": 1.1322916666666667,
+      "avg_waiting_time": 21.711568090650772,
+      "total_throughput": 1743.0,
+      "total_delay": 32610.0,
+      "phase_changes": 333.0,
+      "action_histogram": {
+        "0": 121,
+        "1": 44,
+        "2": 129,
+        "3": 66
+      },
+      "mean_action_probabilities": [
+        0.3077747215978301,
+        0.15608232687565515,
+        0.3820669628342077,
+        0.1540759918755041
+      ]
+    },
+    {
+      "seed": 165,
+      "reward": -28.129879683487896,
+      "avg_queue_length": 1.1916666666666667,
+      "avg_waiting_time": 22.382796443833247,
+      "total_throughput": 1750.0,
+      "total_delay": 34320.0,
+      "phase_changes": 332.0,
+      "action_histogram": {
+        "0": 120,
+        "1": 50,
+        "2": 125,
+        "3": 65
+      },
+      "mean_action_probabilities": [
+        0.30856181752578493,
+        0.16287278674127975,
+        0.3645461621328852,
+        0.1640192340623746
+      ]
+    },
+    {
+      "seed": 166,
+      "reward": -24.0152377785169,
+      "avg_queue_length": 0.9996527777777777,
+      "avg_waiting_time": 20.500516610675387,
+      "total_throughput": 1660.0,
+      "total_delay": 28790.0,
+      "phase_changes": 321.0,
+      "action_histogram": {
+        "0": 119,
+        "1": 46,
+        "2": 132,
+        "3": 63
+      },
+      "mean_action_probabilities": [
+        0.29012250980776333,
+        0.17203107337254547,
+        0.3930314163669916,
+        0.14481499973456996
+      ]
+    },
+    {
+      "seed": 167,
+      "reward": -26.95924771829116,
+      "avg_queue_length": 1.1503472222222222,
+      "avg_waiting_time": 21.700314977433948,
+      "total_throughput": 1754.0,
+      "total_delay": 33130.0,
+      "phase_changes": 325.0,
+      "action_histogram": {
+        "0": 118,
+        "1": 51,
+        "2": 126,
+        "3": 65
+      },
+      "mean_action_probabilities": [
+        0.3032978897752091,
+        0.18034691300602787,
+        0.3600729076217249,
+        0.15628228966855737
+      ]
+    },
+    {
+      "seed": 168,
+      "reward": -25.954892924198393,
+      "avg_queue_length": 1.0729166666666667,
+      "avg_waiting_time": 22.388689470291137,
+      "total_throughput": 1725.0,
+      "total_delay": 30900.0,
+      "phase_changes": 333.0,
+      "action_histogram": {
+        "0": 120,
+        "1": 45,
+        "2": 122,
+        "3": 73
+      },
+      "mean_action_probabilities": [
+        0.2933624123683368,
+        0.17682865074246132,
+        0.3702405774772463,
+        0.1595683559634789
+      ]
+    },
+    {
+      "seed": 169,
+      "reward": -26.608906828607957,
+      "avg_queue_length": 1.1284722222222223,
+      "avg_waiting_time": 21.281308530436622,
+      "total_throughput": 1762.0,
+      "total_delay": 32500.0,
+      "phase_changes": 331.0,
+      "action_histogram": {
+        "0": 116,
+        "1": 50,
+        "2": 128,
+        "3": 66
+      },
+      "mean_action_probabilities": [
+        0.2959871874997529,
+        0.17557784896584355,
+        0.3767503066647704,
+        0.15168465817093058
+      ]
+    },
+    {
+      "seed": 170,
+      "reward": -24.55885528886778,
+      "avg_queue_length": 1.0274305555555556,
+      "avg_waiting_time": 21.163580889172025,
+      "total_throughput": 1723.0,
+      "total_delay": 29590.0,
+      "phase_changes": 326.0,
+      "action_histogram": {
+        "0": 122,
+        "1": 51,
+        "2": 119,
+        "3": 68
+      },
+      "mean_action_probabilities": [
+        0.2971614971870041,
+        0.18211498341416285,
+        0.3663744241266512,
+        0.15434909596624982
+      ]
+    },
+    {
+      "seed": 171,
+      "reward": -26.30033930545046,
+      "avg_queue_length": 1.0777777777777777,
+      "avg_waiting_time": 22.219762145148383,
+      "total_throughput": 1722.0,
+      "total_delay": 31040.0,
+      "phase_changes": 335.0,
+      "action_histogram": {
+        "0": 123,
+        "1": 49,
+        "2": 123,
+        "3": 65
+      },
+      "mean_action_probabilities": [
+        0.3062323110472442,
+        0.16942938079909264,
+        0.37025314032782464,
+        0.15408516882557852
+      ]
+    }
+  ]
+}

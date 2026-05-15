@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <!-- Vehicle types -->
+    <vType id="car"   accel="2.6" decel="4.5" sigma="0.5" length="5.0"  minGap="2.5" maxSpeed="13.89" guiShape="passenger"/>
+    <vType id="truck" accel="1.2" decel="3.0" sigma="0.3" length="12.0" minGap="3.0" maxSpeed="11.11" guiShape="truck"/>
+
+    <!-- Straight-through routes -->
+    <route id="N_S" edges="north_in south_out"/>
+    <route id="S_N" edges="south_in north_out"/>
+    <route id="E_W" edges="east_in  west_out"/>
+    <route id="W_E" edges="west_in  east_out"/>
+
+    <!-- Right-turn routes -->
+    <route id="N_E" edges="north_in east_out"/>
+    <route id="S_W" edges="south_in west_out"/>
+    <route id="E_S" edges="east_in  south_out"/>
+    <route id="W_N" edges="west_in  north_out"/>
+
+    <!-- Left-turn routes -->
+    <route id="N_W" edges="north_in west_out"/>
+    <route id="S_E" edges="south_in east_out"/>
+    <route id="E_N" edges="east_in  north_out"/>
+    <route id="W_S" edges="west_in  south_out"/>
+
+    <!-- Scenario 1: Normal balanced flow (0 to 3600s) -->
+    <flow id="f_N_S_norm" route="N_S" begin="0" end="3600" probability="0.08" type="car"/>
+    <flow id="f_N_E_norm" route="N_E" begin="0" end="3600" probability="0.02" type="car"/>
+    <flow id="f_N_W_norm" route="N_W" begin="0" end="3600" probability="0.02" type="car"/>
+
+    <flow id="f_S_N_norm" route="S_N" begin="0" end="3600" probability="0.08" type="car"/>
+    <flow id="f_S_E_norm" route="S_E" begin="0" end="3600" probability="0.02" type="car"/>
+    <flow id="f_S_W_norm" route="S_W" begin="0" end="3600" probability="0.02" type="car"/>
+
+    <flow id="f_E_W_norm" route="E_W" begin="0" end="3600" probability="0.08" type="car"/>
+    <flow id="f_E_N_norm" route="E_N" begin="0" end="3600" probability="0.02" type="car"/>
+    <flow id="f_E_S_norm" route="E_S" begin="0" end="3600" probability="0.02" type="car"/>
+
+    <flow id="f_W_E_norm" route="W_E" begin="0" end="3600" probability="0.08" type="car"/>
+    <flow id="f_W_N_norm" route="W_N" begin="0" end="3600" probability="0.02" type="car"/>
+    <flow id="f_W_S_norm" route="W_S" begin="0" end="3600" probability="0.02" type="car"/>
+
+    <!-- Scenario 2: Peak hour (3601 to 7200s) -->
+    <flow id="f_N_S_peak"  route="N_S" begin="3601" end="7200" probability="0.18" type="car"/>
+    <flow id="f_S_N_peak"  route="S_N" begin="3601" end="7200" probability="0.18" type="car"/>
+    <flow id="f_E_W_peak"  route="E_W" begin="3601" end="7200" probability="0.18" type="car"/>
+    <flow id="f_W_E_peak"  route="W_E" begin="3601" end="7200" probability="0.18" type="car"/>
+    <flow id="f_N_S_truck" route="N_S" begin="3601" end="7200" probability="0.02" type="truck"/>
+    <flow id="f_E_W_truck" route="E_W" begin="3601" end="7200" probability="0.02" type="truck"/>
+
+    <!-- Scenario 3: Asymmetric flow (7201 to 10800s) -->
+    <flow id="f_N_S_asym" route="N_S" begin="7201" end="10800" probability="0.04" type="car"/>
+    <flow id="f_S_N_asym" route="S_N" begin="7201" end="10800" probability="0.04" type="car"/>
+    <flow id="f_E_W_asym" route="E_W" begin="7201" end="10800" probability="0.20" type="car"/>
+    <flow id="f_W_E_asym" route="W_E" begin="7201" end="10800" probability="0.20" type="car"/>
+
+</routes>

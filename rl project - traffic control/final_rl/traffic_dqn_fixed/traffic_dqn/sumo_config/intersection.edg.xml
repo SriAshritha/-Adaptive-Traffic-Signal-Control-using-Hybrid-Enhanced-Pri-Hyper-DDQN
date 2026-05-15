@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edges xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/edges_file.xsd">
+
+    <!-- Incoming edges: approach to intersection -->
+    <edge id="north_in"  from="north_end"    to="intersection" numLanes="1" speed="13.89" priority="2"/>
+    <edge id="south_in"  from="south_end"    to="intersection" numLanes="1" speed="13.89" priority="2"/>
+    <edge id="east_in"   from="east_end"     to="intersection" numLanes="1" speed="13.89" priority="2"/>
+    <edge id="west_in"   from="west_end"     to="intersection" numLanes="1" speed="13.89" priority="2"/>
+
+    <!-- Outgoing edges: intersection to exit -->
+    <edge id="north_out" from="intersection" to="north_end"   numLanes="1" speed="13.89" priority="2"/>
+    <edge id="south_out" from="intersection" to="south_end"   numLanes="1" speed="13.89" priority="2"/>
+    <edge id="east_out"  from="intersection" to="east_end"    numLanes="1" speed="13.89" priority="2"/>
+    <edge id="west_out"  from="intersection" to="west_end"    numLanes="1" speed="13.89" priority="2"/>
+
+</edges>

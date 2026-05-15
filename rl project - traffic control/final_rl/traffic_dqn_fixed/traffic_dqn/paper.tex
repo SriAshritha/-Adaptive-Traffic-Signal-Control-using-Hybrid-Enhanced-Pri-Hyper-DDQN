@@ -1,0 +1,561 @@
+% ============================================================
+%  IEEE Conference Paper — IEEEtran template
+%  Compile: pdflatex paper -> bibtex paper -> pdflatex paper (x2)
+% ============================================================
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+% ---- packages -----------------------------------------------
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{balance}       % balances columns on last page
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% ============================================================
+\begin{document}
+
+\title{Reinforcement Learning for Adaptive Traffic Signal Control
+at an Isolated Four-Way Intersection:\\
+A Comparative Study of Tabular and Deep RL Algorithms}
+
+\author{%
+\IEEEauthorblockN{[Authors]}
+\IEEEauthorblockA{%
+\textit{[Department, Institution]}\\
+[City, Country]\\
+[email@institution.edu]}}
+
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\begin{abstract}
+Urban traffic congestion remains a persistent challenge in modern
+cities, and adaptive traffic signal control~(ATSC) via reinforcement
+learning~(RL) has emerged as a promising solution. This paper
+investigates RL-based ATSC at an isolated four-way intersection
+under two action-space configurations: a simplified two-action setup
+(North-South green versus East-West green) and a fine-grained
+four-action movement-based setup that separately controls
+straight-through and protected left-turn/U-turn phases for each
+axis. Three classical tabular algorithms---TD(0), SARSA, and
+Q-Learning---are benchmarked alongside two deep RL methods:
+Pri-DDQN (priority-replay Double DQN)~\cite{Zheng2024PriDDQNLAG}
+and a single-intersection adaptation of MA-SAC with a
+spatio-temporal hypergraph-inspired centralised
+critic~\cite{Wang2024TowardMRP}. All experiments are conducted in a
+lightweight stochastic discrete-time simulator that captures Poisson
+vehicle arrivals, phase-change yellow losses, and per-movement
+service rates. Results demonstrate that deep RL methods achieve
+substantially lower average queue lengths and waiting times than
+tabular baselines, with Pri-DDQN attaining the best cumulative
+reward in the four-action setting while both deep RL approaches
+achieve near-identical traffic efficiency.
+\end{abstract}
+
+\begin{IEEEkeywords}
+adaptive traffic signal control, reinforcement learning,
+deep Q-network, soft actor-critic, Q-learning, SARSA,
+four-way intersection, action space design
+\end{IEEEkeywords}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+Signalised intersections are the primary bottleneck in urban road
+networks. Fixed-time controllers, while straightforward to deploy,
+cannot adapt to the natural variability of traffic demand, leading
+to unnecessary delays and fuel consumption. Adaptive traffic signal
+control~(ATSC) has therefore been an active research area for
+several decades, and reinforcement learning~(RL) has emerged as a
+particularly attractive framework because it allows a controller to
+learn an optimal phase-switching policy directly from interaction
+with the environment, without requiring an explicit traffic model.
+
+Early work established the viability of Q-learning for isolated
+intersections~\cite{Abdulhai2003ReinforcementLFAD,
+ElTantawy2010AnALV, A2011ReinforcementLWU}.
+Abdulhai~et~al.~\cite{Abdulhai2003ReinforcementLFAD} demonstrated
+that a single-agent Q-learning controller can outperform actuated
+control at a simulated isolated intersection, and subsequent work
+began to formalise state representation, action space, and reward
+function as critical design
+decisions~\cite{ElTantawy2014DesignORH, Touhbi2017AdaptiveTSM}.
+El-Tantawy~et~al.~\cite{ElTantawy2014DesignORH} systematically
+investigated these parameters and achieved up to 48\% savings in
+average vehicle delay compared to pre-timed control.
+
+With the rise of deep neural networks, deep RL methods quickly
+supplanted tabular approaches for high-dimensional state
+spaces~\cite{Haydari2020DeepRLC, Rasheed2020DeepRLBL}.
+Haydari and Yilmaz~\cite{Haydari2020DeepRLC} provide a
+comprehensive survey of deep RL applications in intelligent
+transportation covering state encodings, reward formulations, and
+simulation environments. Gao~et~al.~\cite{Gao2017AdaptiveTSA}
+applied DQN with experience replay and a target network to a
+four-way intersection, establishing a widely reproduced baseline.
+Wan and Hwang~\cite{Wan2018ValuebasedDRE} proposed a value-based
+deep Q-learning controller with a dynamic discount factor for
+isolated intersection control, achieving a 20\% reduction in system
+delay relative to fixed timing. Li~et~al.~\cite{Li2020AdaptiveTSN}
+extended DQN to both single- and multi-intersection settings,
+measuring performance via average waiting time.
+
+Double DQN reduces the overestimation bias of vanilla DQN and has
+been adopted widely for traffic signal
+control~\cite{Gu2020DoubleDQD, Zheng2024PriDDQNLAG}.
+Gu~et~al.~\cite{Gu2020DoubleDQD} introduced a dual-agent DDQN
+architecture for a four-phase isolated intersection, demonstrating
+improved traffic capacity in SUMO simulations.
+Zheng~et~al.~\cite{Zheng2024PriDDQNLAG} further proposed Pri-DDQN,
+a hybrid agent that integrates priority-based dynamic replay,
+power-function epsilon decay, and state/reward-aware loss
+weighting, reducing both average queue length and waiting time
+at single intersections. Liao~et~al.~\cite{Liao2020TimeDPQ}
+explored an LSTM Q-network with a time-difference penalty to
+balance safety and throughput, reporting improvements over fixed
+signal timing and vanilla DQN across eight signal phases.
+
+Beyond standard DQN variants, hierarchical and policy-gradient
+methods have been explored. Gu~et~al.~\cite{Gu2025AHDL} proposed a
+hierarchical DDPG framework that separately allocates cycle
+durations at NS and EW axes and then divides green time between
+straight and protected left-turn movements---a structure closely
+related to our four-action formulation.
+Ma~et~al.~\cite{Ma2021AdaptiveOOK} applied Proximal Policy
+Optimisation~(PPO) with Discrete Traffic State Encoding to
+dynamically adjust phase lengths, and Pan~\cite{Pan2023TrafficLCR}
+combined a phase-gate component with a memory palace mechanism to
+improve queue-length and travel-time performance. Sekar and
+Nezamoddini~\cite{Sekar2025OptimizingMIB} employed Soft
+Actor-Critic~(SAC) for four-way intersection control in a mixed
+autonomous/human-driven vehicle environment.
+
+Multi-agent extensions have attracted considerable attention for
+coordinating signals across intersection
+networks~\cite{Balaji2010UrbanTSJ, ElTantawy2012MultiAgentRLY,
+ElTantawy2013MultiagentRLAG, Wiering2000MultiAgentRLAF,
+Xu2013TheSOAL, Kim2019CooperativeTSAB,
+Kolat2023MultiAgentRLAN}.
+El-Tantawy and Abdulhai~\cite{ElTantawy2012MultiAgentRLY} developed
+MARLIN-ATSC for a five-intersection network, later scaled to
+downtown Toronto with a 27\% delay
+reduction~\cite{ElTantawy2013MultiagentRLAG}.
+Wang~et~al.~\cite{Wang2024TowardMRP} introduced MA-SAC with a
+spatio-temporal hypergraph critic capturing dependencies across
+multiple intersections simultaneously---a design we adapt to the
+single-intersection benchmark in this paper. BCT-APLight
+\cite{2024BayesianCRT} further advanced multi-intersection ATSC
+with an attention-based adaptive pressure mechanism.
+
+Reward function design has received dedicated
+attention~\cite{Touhbi2017AdaptiveTSM, Egea2020AssessmentORW,
+Aslani2018ContinuousRRZ,Lee2022EffectsAOBK}. State and action
+representation issues are discussed in Kanis~et~al.
+\cite{Kanis2021BackTBO}, who show that acyclic phase transitions
+outperform cyclic ones, and in Varela~et~al.
+\cite{Varela2021AMFX}, who propose a standardised RL-ATSC
+development methodology. Broader perspectives include
+connected-vehicle safety~\cite{Karbasi2024ExploringTIF},
+visible-light-communication
+integration~\cite{Vieira2024EnhancingUIAC},
+digital-twin frameworks~\cite{Bagabaldo2025DigitalTFS},
+human-centric objectives~\cite{Vlachogiannis2023HumanLightIRI},
+universal V2X frameworks~\cite{Wang2023UniTSAAUAE}, and
+Transformer-based approaches~\cite{Zhao2024SequenceDTAH}.
+
+In this paper we make the following contributions: (i)~we design a
+lightweight stochastic RL environment with two distinct
+action-space configurations---a coarse two-action setup and a
+fine-grained four-action movement-based setup; (ii)~we conduct a
+systematic comparison of three tabular RL algorithms
+(TD(0), SARSA, Q-Learning) against two deep RL benchmarks
+(Pri-DDQN and MA-SAC adapted); (iii)~we analyse the impact of
+action-space granularity on learning efficiency, throughput, queue
+length, and waiting time; and (iv)~we discuss practical insights
+for choosing between tabular and deep RL controllers at real-world
+isolated four-way intersections.
+
+% ============================================================
+% 2. RELATED WORK
+% ============================================================
+\section{Related Work}
+
+\subsection{Tabular RL at Isolated Intersections}
+
+The earliest RL applications to ATSC used Q-learning at simulated
+isolated intersections~\cite{Abdulhai2003ReinforcementLFAD}.
+El-Tantawy and Abdulhai~\cite{ElTantawy2010AnALV} extended this to
+multiple state models under Q-learning with variable phasing.
+Systematic investigation of RL design parameters---state space,
+action space, reward, phasing scheme---was carried out by
+El-Tantawy~et~al.~\cite{ElTantawy2014DesignORH}, who achieved 48\%
+average delay savings. Touhbi~et~al.~\cite{Touhbi2017AdaptiveTSM}
+analysed generalised state spaces and reward definitions using
+Q-learning, demonstrating consistent performance gains over
+fixed-plan control. Bhatnagar and
+colleagues~\cite{A2011ReinforcementLWU} compared Q-learning with
+policy gradient actor-critic methods for adaptive traffic light
+control. Aslani~et~al.~\cite{Aslani2017AdaptiveTSAO} further
+applied actor-critic methods with real-world traffic disruption
+events, and Mannion~et~al.~\cite{Mannion2016AnERAP} provided an
+experimental review covering multiple tabular and function-approximation
+RL algorithms for ATSC.
+
+\subsection{Deep RL for Single-Intersection Control}
+
+Gao~et~al.~\cite{Gao2017AdaptiveTSA} applied DQN with experience
+replay and a target network to a four-way intersection, targeting
+vehicle delay reduction. Wan and Hwang~\cite{Wan2018ValuebasedDRE}
+employed deep Q-learning with a dynamic discount factor, reducing
+system delay by 20\%. Genders and Razavi~\cite{Genders2016UsingADAY}
+were among the earliest to apply DNN-based DQN to traffic signals,
+and later proposed asynchronous $n$-step
+Q-learning~\cite{Genders2019AsynchronousNQAV} for improved
+sample efficiency. Li~et~al.~\cite{Li2020AdaptiveTSN} built a
+DQN-based ATSC model tested under varying traffic conditions.
+Gu~et~al.~\cite{Gu2020DoubleDQD} introduced a dual-agent DDQN
+with priority experience replay at a four-phase isolated
+intersection. Zheng~et~al.~\cite{Zheng2024PriDDQNLAG} advanced
+this further with Pri-DDQN, combining Double DQN with priority
+replay and state/reward-aware loss weighting---a key baseline in
+our study. Liao~et~al.~\cite{Liao2020TimeDPQ} proposed an LSTM Q-network
+with a time-difference penalty. Pan~\cite{Pan2023TrafficLCR}
+combined a phase-gate mechanism with a memory palace for DQL.
+Jiang~et~al.~\cite{Jiang2022EconomicDrivenATAI} applied DDDQN with
+an economic-driven penalty at four-way intersections.
+Kodama~et~al.~\cite{Kodama2022TrafficSCAA} introduced a dual
+targeting algorithm~(DTA) that reinforces successful experiences,
+reporting a 33\% waiting-time reduction. Aslani~et~al.
+\cite{Aslani2018ContinuousRRZ} used continuous residual RL with
+feature functions to achieve a 15\% travel-time reduction.
+Park~et~al.~\cite{Park2021DeepQTAM} provided an in-depth study of
+DQN model variants for traffic signal control. Agafonov and
+Myasnikov~\cite{Agafonov2021TrafficSCBQ} and Zeng~et~al.
+\cite{Zeng2018AdaptiveTSAU} explored Double Q-learning and deep
+recurrent Q-learning for adaptive signal timing, respectively.
+Rodrigues and Azevedo~\cite{Rodrigues2019TowardsRDSJ} analysed
+robustness of deep RL controllers under demand surges and sensor
+failures. Survey and review articles covering DRL-based ATSC
+include~\cite{Haydari2020DeepRLC, Rasheed2020DeepRLBL,
+Yau2017ASOBO, Greguri2020ApplicationODAR, Wang2022ACRBC}.
+
+\subsection{Hierarchical and Policy-Gradient Methods}
+
+Ma~et~al.~\cite{Ma2021AdaptiveOOK} applied PPO with Discrete
+Traffic State Encoding (DTSE) to dynamically adjust phase
+durations. Gu~et~al.~\cite{Gu2025AHDL} proposed a two-level DDPG
+framework for four-way intersections where the high-level agent
+allocates time between NS and EW and the low-level agent
+distributes green between straight and left-turn movements.
+Mannion~et~al.~\cite{Mannion2015ParallelRLAK} used parallel RL to
+increase exploration in complex multi-phase intersections.
+Sekar and Nezamoddini~\cite{Sekar2025OptimizingMIB} applied SAC in
+a mixed-autonomy four-way scene with safety constraints.
+Zhao~et~al.~\cite{Zhao2024SequenceDTAH} proposed the Sequence
+Decision Transformer (SDT) for offline decision-based ATSC.
+Tan~et~al.~\cite{Tan2019DeepRLBH, Tan2022DeepRLBJ} applied deep RL
+with actor-critic structures for adaptive signal timing.
+Lin and Lin~\cite{Lin2025SmartCTAZ} combined STGCN-LSTM with PPO
+for smart-city traffic optimisation. Bouktif~et~al.
+\cite{Bouktif2021TrafficSCBM} proposed a hybrid discrete-continuous
+action space for traffic signal control. Wang~et~al.
+\cite{Wang2025APHBB} designed a parallel hybrid action space RL
+model for real-world ATSC.
+
+\subsection{Multi-Agent and Network-Level Control}
+
+Balaji~et~al.~\cite{Balaji2010UrbanTSJ} deployed multi-agent
+Q-learning across 29 urban intersections.
+Wiering~\cite{Wiering2000MultiAgentRLAF} introduced multiple MARL
+algorithms for coordinated traffic light control.
+El-Tantawy and Abdulhai~\cite{ElTantawy2012MultiAgentRLY} developed
+MARLIN-ATSC for five-intersection networks, later scaled to
+downtown Toronto~\cite{ElTantawy2013MultiagentRLAG}.
+Xu~et~al.~\cite{Xu2013TheSOAL} modelled multi-agent traffic control
+as a Markov game using joint-action Q-learning.
+Kim and Jeong~\cite{Kim2019CooperativeTSAB} proposed cooperative
+DQN with traffic flow prediction. BCT-APLight~\cite{2024BayesianCRT}
+applied Bayesian critique-tuning with adaptive pressure.
+Wang~et~al.~\cite{Wang2024TowardMRP} proposed MA-SAC with a
+spatio-temporal hypergraph critic; we adapt this architecture to
+the single-intersection benchmark. Arel~et~al.
+\cite{Arel2010ReinforcementLMBT}, Zhang~et~al.
+\cite{Zhang2021IndependentRLAW}, Kolat~et~al.
+\cite{Kolat2023MultiAgentRLAN}, Hu and Li~\cite{Hu2024AMDBA}, and
+Jiang~et~al.~\cite{Jiang2022MultiAgentRLBV} present further MARL
+extensions for network-level coordination.
+
+% ============================================================
+% 3. TRAFFIC ENVIRONMENT SETUP
+% ============================================================
+\section{Traffic Environment Setup}
+
+All algorithms are evaluated in a lightweight stochastic
+discrete-time simulator that abstracts the key dynamics of a single
+4-way intersection without requiring a full microscopic simulator
+such as SUMO. Two experimental configurations are studied.
+
+\subsection{Common Intersection Geometry}
+
+Both experiments model a \textbf{single isolated four-way
+(four-legged) signalised intersection} with four arms: North~(N),
+South~(S), East~(E), and West~(W). A single RL controller decides
+which movement group receives green at every decision step.
+Table~\ref{tab:common} summarises shared simulation parameters.
+
+\begin{table}[h]
+\centering
+\caption{Shared Simulation Parameters}
+\label{tab:common}
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+Simulation horizon & 3{,}600\,s (1\,h) \\
+Decision interval $\Delta t$ & 10\,s \\
+Yellow clearance $\tau_y$ & 3\,s \\
+Effective green (same phase) & 10\,s \\
+Effective green (phase change) & $\max(10-3,1) = 7$\,s \\
+Max queue per lane/group & 30\,veh \\
+Arrival model & Poisson($\lambda_i \cdot \Delta t$) \\
+Traffic demand mode & \texttt{normal} \\
+Training episodes & 500 \\
+Evaluation episodes & 30 (seeds 142--171) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Experiment~A: Two-Action Setup}
+
+The intersection is simplified to four directional queues (one per
+arm: N, S, E, W) with only two discrete signal phases:
+
+\begin{center}
+\begin{tabular}{cl}
+\toprule
+Action & Phase \\
+\midrule
+0 & \textbf{NS\_GREEN} -- N and S arms receive green \\
+1 & \textbf{EW\_GREEN} -- E and W arms receive green \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{State space (9-dimensional):}
+\begin{equation}
+  s = \bigl[q_N,\,q_S,\,q_E,\,q_W,\;
+              w_N,\,w_S,\,w_E,\,w_W,\;
+              \phi\bigr]
+\end{equation}
+where $q_i = Q_i/Q_{\max}$, $w_i = \min(W_i/W_{\max}, 1)$,
+$W_{\max}=300$\,s, and $\phi\in\{0,1\}$ is the current phase.%
+\footnote{For tabular agents the state is further discretised into
+5 bins per queue dimension plus the current phase (tuple length 5).}
+
+\noindent\textbf{Arrival rates} (normal mode):
+$\lambda_{\{N,S,E,W\}} = 0.4$\,veh/step.
+Service: $\approx 0.5$\,veh/step Poisson departure per green lane.
+
+\noindent\textbf{Reward} (clipped to $[-1,1]$):
+\begin{equation}
+  r = -0.50\,P_q -0.30\,P_w +0.10\,B_{tp}
+      -0.05\,P_{sw} -0.05\,P_{fair}
+\end{equation}
+where $P_q{=}\sum_i Q_i/(4Q_{\max})$,
+$P_w{=}\sum_i W_i/(4W_{\max})$,
+$B_{tp}$ is the normalised throughput bonus,
+$P_{sw}{=}0.1$ if phase changed (else 0), and
+$P_{fair}{=}\sigma(Q)/Q_{\max}$.
+
+\subsection{Experiment~B: Four-Action Movement-Based Setup}
+
+Experiment B introduces eight movement groups (straight+right and
+left+U-turn per arm) and four discrete actions, each granting green
+to one protected stage:
+
+\begin{table}[h]
+\centering
+\caption{Four-Action Movement Definitions}
+\label{tab:actions}
+\begin{tabular}{clcc}
+\toprule
+Action & Name & Served Groups & SUMO Phase \\
+\midrule
+0 & NS Straight    & n\_through, s\_through & 0 \\
+1 & NS Left/U-turn & n\_turn, s\_turn       & 2 \\
+2 & EW Straight    & e\_through, w\_through & 4 \\
+3 & EW Left/U-turn & e\_turn, w\_turn       & 6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{State space (17-dimensional):}
+\begin{equation}
+  s = \bigl[q_1,\ldots,q_8,\;w_1,\ldots,w_8,\;\phi/3\bigr]
+\end{equation}
+following the order \{n\_through, n\_turn, s\_through, s\_turn,
+e\_through, e\_turn, w\_through, w\_turn\}.
+
+\noindent\textbf{Arrival rates} (normal mode):
+$\lambda_{through}{=}0.10$, $\lambda_{turn}{=}0.02$\,veh/s per arm.
+Service: $\mu_{through}{=}0.80$, $\mu_{turn}{=}0.55$\,veh/s.
+
+\noindent\textbf{Reward} (clipped to $[-1,1]$):
+\begin{equation}
+  r = -0.45\,P_q -0.30\,P_w +0.20\,B_{tp}
+      -0.05\,P_{fair} -0.05\,P_{sw}
+\end{equation}
+where terms are averaged over all eight movement groups,
+$B_{tp}{=}N_{dep}/(2Q_{\max})$, and
+$P_{sw}{=}\mathbf{1}[\phi \neq \phi_{prev}]$.
+
+% ============================================================
+% 4. METHODOLOGY
+% ============================================================
+\section{Methodology}
+
+% [To be completed in future revision.]
+
+% ============================================================
+% 5. DISCUSSION AND RESULTS
+% ============================================================
+\section{Discussion and Results}
+
+All results are from \textbf{greedy evaluation} (no exploration)
+over 30~independent seeds under the \texttt{normal} traffic demand
+mode. Training uses seed~42. We report mean~$\pm$~std where
+available.
+
+\subsection{Experiment~A: Two-Action Single 4-Way Intersection}
+
+Table~\ref{tab:2action} reports evaluation results for the two-action
+setup. Only deep RL methods are evaluated in this configuration.
+
+\begin{table}[h]
+\centering
+\caption{Exp.~A: Two-Action Results (30 seeds, normal mode)}
+\label{tab:2action}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Reward} & \textbf{Avg Q} & \textbf{Avg Wait} & \textbf{Thput}\\
+ & (mean$\pm$std) & (veh) & (s) & (veh/ep) \\
+\midrule
+Pri-DDQN~\cite{Zheng2024PriDDQNLAG}
+  & $-58.33 \pm 2.30$ & 0.45 & 3.92 & 5{,}767 \\
+MA-SAC (adapted)~\cite{Wang2024TowardMRP}
+  & $-65.51 \pm 2.53$ & 1.00 & 4.75 & 5{,}762 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In the two-action setting, Pri-DDQN achieves lower average queue
+(0.45 vs.\ 1.00\,veh), lower waiting time (3.92 vs.\ 4.75\,s), and
+a better mean reward ($-58.33$ vs.\ $-65.51$). Both methods
+deliver virtually identical throughput ($\approx$5{,}762--5{,}767\,veh
+per episode). The high throughput compared to Experiment~B reflects
+the coarser action space: each two-action decision serves two full
+arms simultaneously, accommodating higher aggregate flow per step.
+
+\subsection{Experiment~B: Four-Action Movement-Based Intersection}
+
+Table~\ref{tab:4action} presents all five methods ordered from
+worst to best cumulative reward.
+
+\begin{table}[h]
+\centering
+\caption{Exp.~B: Four-Action Results (30 seeds, normal mode)}
+\label{tab:4action}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{Reward} & \textbf{Avg Q} & \textbf{Avg Wait} & \textbf{Thput} & \textbf{Ph.Ch.}\\
+ & (mean$\pm$std) & (veh) & (s) & (veh/ep) & \\
+\midrule
+TD(0)
+  & $-346.25\pm1.31$ & 19.00 & 1{,}359.5 & 718   & 0   \\
+Q-Learning
+  & $-216.21\pm73.83$ & 8.22 & 358.3    & 1{,}386 & 136 \\
+SARSA
+  & $-87.24\pm71.91$  & 3.30 & 103.9    & 1{,}634 & 218 \\
+MA-SAC~\cite{Wang2024TowardMRP}
+  & $-25.89\pm1.25$   & 1.08 & 21.6     & 1{,}722 & 330 \\
+Pri-DDQN~\cite{Zheng2024PriDDQNLAG}
+  & $-19.59\pm0.62$   & 0.97 & 21.3     & 1{,}717 & 244 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Tabular RL Analysis}
+TD(0) converged to a degenerate policy (phase changes\,$=$\,0),
+always selecting Action~0 (NS Straight). This produces catastrophic
+East-West queue build-up: average queue 19.00\,veh, waiting time
+1{,}359.5\,s, throughput just 718\,veh/episode. The failure stems
+from TD(0) learning only $V(s)$, which cannot distinguish which
+\emph{action} causes a transition, causing the greedy policy to
+collapse to one fixed action. Q-Learning shows partial recovery but
+high variance ($\pm73.83$), indicating convergence to different
+local optima across seeds. SARSA outperforms Q-Learning
+significantly---average queue 3.30\,veh, waiting time 103.9\,s,
+throughput 1{,}634\,veh---because on-policy updates prevent
+over-optimistic estimates for unvisited state-action pairs.
+
+\subsubsection{Deep RL Analysis}
+Pri-DDQN achieves the best reward ($-19.59$) and the lowest average
+queue (0.97\,veh), a $3.4\times$ improvement over SARSA.
+MA-SAC (adapted) delivers comparable traffic efficiency
+(queue~1.08\,veh, wait~21.6\,s, throughput~1{,}722\,veh) with a
+higher phase-change count (330 vs.\ 244), reflecting the continuous
+actor's more dynamic switching behaviour. The reward gap between
+Pri-DDQN and MA-SAC ($-19.59$ vs.\ $-25.89$) is at least partly
+attributable to the additional switch penalty accumulated by MA-SAC.
+
+\subsubsection{Key Observations}
+\begin{enumerate}
+  \item \textbf{TD(0) collapse:} A value-only method that mirrors
+    $V(s)$ into action slots fails catastrophically in a 4-action
+    environment and should not be used as a standalone ATSC
+    controller.
+  \item \textbf{SARSA vs.\ Q-Learning:} On-policy SARSA is
+    substantially more robust than off-policy Q-Learning,
+    achieving lower variance and better efficiency.
+  \item \textbf{Tabular vs.\ deep RL gap:} The best tabular method
+    (SARSA) is outperformed by deep RL on every metric:
+    $3.4\times$ fewer queued vehicles, $4.9\times$ lower waiting
+    time, and higher reward.
+  \item \textbf{Action-space granularity:} The four-action
+    movement-based formulation enables deep RL agents to reduce the
+    average queue below one vehicle under normal demand, a
+    resolution not achievable with the coarser two-action setup.
+  \item \textbf{Pri-DDQN vs.\ MA-SAC:} Both achieve near-identical
+    traffic efficiency; Pri-DDQN slightly outperforms on reward
+    owing to fewer unnecessary phase changes.
+\end{enumerate}
+
+% ============================================================
+% 6. CONCLUSION AND FUTURE WORK
+% ============================================================
+\section{Conclusion and Future Work}
+
+% [To be completed in future revision.]
+
+% ============================================================
+% REFERENCES — use external papers.bib
+% ============================================================
+\balance
+\bibliographystyle{IEEEtran}
+\bibliography{papers}
+
+\end{document}

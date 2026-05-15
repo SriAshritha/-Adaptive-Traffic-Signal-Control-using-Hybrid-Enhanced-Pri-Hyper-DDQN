@@ -1,0 +1,37 @@
+{
+  "summary": {
+    "eval_reward_mean": -65.51149898050603,
+    "eval_reward_std": 2.5266059177447886,
+    "eval_avg_queue_length": 1.0,
+    "eval_avg_waiting_time": 4.746434866036806,
+    "eval_total_throughput": 5762.0,
+    "eval_total_delay": null,
+    "eval_phase_changes": 2103.0
+  },
+  "rows": [
+    {
+      "seed": 142,
+      "reward": -68.03810489825082,
+      "avg_queue_length": 1.5,
+      "avg_waiting_time": 4.861505375752847,
+      "total_throughput": 5854.0,
+      "phase_changes": 2134.0,
+      "action_histogram": {
+        "0": 2129,
+        "1": 1471
+      }
+    },
+    {
+      "seed": 143,
+      "reward": -62.984893062761245,
+      "avg_queue_length": 0.5,
+      "avg_waiting_time": 4.631364356320765,
+      "total_throughput": 5670.0,
+      "phase_changes": 2072.0,
+      "action_histogram": {
+        "0": 2191,
+        "1": 1409
+      }
+    }
+  ]
+}

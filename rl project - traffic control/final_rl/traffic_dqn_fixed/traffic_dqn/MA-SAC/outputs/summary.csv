@@ -1,0 +1,2 @@
+method,eval_reward_mean,eval_reward_std,eval_avg_queue_length,eval_avg_waiting_time,eval_total_throughput,eval_total_delay,eval_phase_changes
+MA-SAC,-25.892594554419237,1.2517570678493486,1.079074074074074,21.60156949007953,1722.3333333333333,31077.333333333332,330.06666666666666
